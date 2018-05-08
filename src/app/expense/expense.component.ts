@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ExpenseComponent implements OnInit {
 
 
-  genderList = ['otp', 'pin', 'others'];
+  factors = ['otp', 'pin', 'others'];
 
   ngOnInit() {
   }
