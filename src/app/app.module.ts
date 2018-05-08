@@ -3,16 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ExpenseComponent } from './expense/expense.component';
-import { ExpenseListComponent } from './expense-list/expense-list.component';
+import { ExpensiveTypeListComponent } from './expensive-type-list/expensive-type-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExpenseComponent,
-    ExpenseListComponent
+    ExpensiveTypeListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

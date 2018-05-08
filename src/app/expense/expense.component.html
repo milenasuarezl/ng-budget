@@ -1,23 +1,36 @@
-<div class="pull-left">
-  Rango 1
-  <div>
-    <input type="text" placeholder="min">
+<form [formGroup]="expensiveForm" (ngSubmit)="onFormSubmit()">
+  <div formArrayName="expensives">
+    <div *ngFor="let expensive of expensiveForm.get('expensives').controls; let i = index" [formGroupName]="i">
+      <label for="">Expensive #</label>
+      <div>
+        <input type="text" placeholder="min" formControlName="min"> </div>
+      <div>
+        <input type="text" placeholder="maximo" formControlName="maximo"> </div>
+      <div>
+        <button type="button" (click)="onDeleteExpensive(i)">Delete Expensive</button>
+      </div>
+      <div>
+        <label for="select">Factor</label>
+        <select id="select" formControlName="factor1">
+          <option *ngFor="let factor of factors" [value]="factors"> {{factors}}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="select">Factor 2</label>
+        <select id="select" formControlName="factor2">
+          <option *ngFor="let factor of factors" [value]="factors"> {{factors}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <button type="button" (click)="onAddExpensive()">Add Expensive</button>
+    </div>
   </div>
   <div>
-    <input type="text" placeholder="máx">
+    <button type="reset">Cancel</button>
+    <button type="submit">Submit</button>
   </div>
-  <div class="form-group">
-    <label for="select">Factor</label>
-    <select id="select">
-      <option *ngFor="let factor of factors" [value]="g"> {{factors}}
-      </option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="select">Factor 2</label>
-    <select id="select">
-      <option *ngFor="let factor of factors" [value]="g"> {{factors}}
-      </option>
-    </select>
-  </div>
-</div>
+</form>
