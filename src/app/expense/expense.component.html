@@ -1,0 +1,19 @@
+<div class="pull-left">
+  Rango 1
+  <input type="text">
+  <!--- Select gender Block -->
+  <div class="form-group">
+    <label for="select">Factor</label>
+    <select id="select">
+      <option *ngFor="let g of genderList" [value]="g"> {{g}}
+      </option>
+    </select>
+  </div>
+  <div class="form-group">
+      <label for="select">Factor 2</label>
+      <select id="select">
+        <option *ngFor="let g of genderList" [value]="g"> {{g}}
+        </option>
+      </select>
+    </div>
+</div>
