@@ -1,36 +1,40 @@
-<form [formGroup]="expensiveForm" (ngSubmit)="onFormSubmit()">
-  <div formArrayName="expensives">
-    <div *ngFor="let expensive of expensiveForm.get('expensives').controls; let i = index" [formGroupName]="i">
-      <label for="">Expensive #</label>
+<div class="rank-type-transactions-content">
+  <div class="transaction-type-title">
+    {{ transactionType }}
+  </div>
+  <div formArrayName="limits">
+    <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('limits').controls; let i = index" [formGroupName]="i">
+      <label for="">Rango {{i}}</label>
       <div>
-        <input type="text" placeholder="min" formControlName="min"> </div>
+        <input type="text" placeholder="Minímo" formControlName="valueMinimo"> </div>
       <div>
-        <input type="text" placeholder="maximo" formControlName="maximo"> </div>
-      <div>
-        <button type="button" (click)="onDeleteExpensive(i)">Delete Expensive</button>
-      </div>
+        <input type="text" placeholder="Máximo" formControlName="valueMaximo"> </div>
       <div>
         <label for="select">Factor</label>
         <select id="select" formControlName="factor1">
-          <option *ngFor="let factor of factors" [value]="factors"> {{factors}}
+          <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
           </option>
         </select>
       </div>
       <div>
         <label for="select">Factor 2</label>
         <select id="select" formControlName="factor2">
-          <option *ngFor="let factor of factors" [value]="factors"> {{factors}}
+          <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
           </option>
         </select>
       </div>
-    </div>
-    <hr>
-    <div>
-      <button type="button" (click)="onAddExpensive()">Add Expensive</button>
+      <div>
+        <button type="button" (click)="onDeleteRankTransactionType(i)">X</button>
+      </div>
     </div>
   </div>
   <div>
+    <button type="button" (click)="onAddRankTransactionType()">Add Rank</button>
+  </div>
+  <div class="actions">
     <button type="reset">Cancel</button>
     <button type="submit">Submit</button>
   </div>
-</form>
+  </form>
+</div>
+<form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">

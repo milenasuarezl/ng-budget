@@ -7,40 +7,41 @@ import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@ang
   styleUrls: ['./expense.component.css']
 })
 export class ExpenseComponent implements OnInit {
-  expensiveForm: FormGroup;
+  transactionTypeForm: FormGroup;
   factors: String[];
-  expensives = new FormArray([]);
+  limits = new FormArray([]);
+  transactionType: String = 'Pago de servicios públicos';
 
-  constructor(private formBuilder: FormBuilder) {}
-  
+  constructor(private formBuilder: FormBuilder) { }
+
   ngOnInit() {
-    this.factors = ['otp', 'pin', 'others'];
+    this.factors = ['OTP', 'PIN', 'OTHER'];
     this.initForm();
   }
 
-  onAddExpensive(): void {
-    (<FormArray>this.expensiveForm.get('expensives')).push(
-      new FormGroup({
-        'min': new FormControl(null, Validators.required),
-        'max': new FormControl(null, Validators.required)
-      })
-    );
+  onAddRankTransactionType(): void {
+    (<FormArray>this.transactionTypeForm.get('limits')).push(this.createItem());
   }
 
-  onDeleteExpensive(idExpensive: number): void {
-    (<FormArray>this.expensiveForm.get('expensives')).removeAt(idExpensive);
+  onDeleteRankTransactionType(idRank: number): void {
+    (<FormArray>this.transactionTypeForm.get('limits')).removeAt(idRank);
   }
 
-  private initForm() {
-    this.expensiveForm = this.formBuilder.group({
-      min: ['', Validators.required],
-      maximo: ['', Validators.required],
-      factor1: ['', Validators.required],
-      factor2: ['', Validators.required],
-      expensives: this.expensives
+  createItem(): FormGroup {
+    return this.formBuilder.group({
+      valueMinimo: ['', Validators.required],
+      valueMaximo: ['', Validators.required],
+      factor1: [this.factors[0], Validators.required],
+      factor2: [this.factors[0], Validators.required]
     });
   }
 
-  onFormSubmit() : void {}
+  private initForm() {
+    this.transactionTypeForm = this.formBuilder.group({
+      limits: this.formBuilder.array([this.createItem()])
+    });
+  }
+
+  onFormSubmit(): void { }
 }
 
