@@ -1,7 +1,8 @@
 <div class="rank-type-transactions-content">
-  <div class="transaction-type-title">
-    {{ transactionType }}
-  </div>
+    <div class="transaction-type-title">
+      {{ transactionType }}
+    </div>
+<form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">
   <div formArrayName="limits">
     <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('limits').controls; let i = index" [formGroupName]="i">
       <label for="">Rango {{i}}</label>
@@ -35,6 +36,5 @@
     <button type="reset">Cancel</button>
     <button type="submit">Submit</button>
   </div>
-  </form>
+</form>
 </div>
-<form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">

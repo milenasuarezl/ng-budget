@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-expensive-type-list',
   templateUrl: './expensive-type-list.component.html',
