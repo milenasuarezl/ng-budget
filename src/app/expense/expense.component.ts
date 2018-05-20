@@ -10,7 +10,6 @@ export class ExpenseComponent implements OnInit {
   transactionTypeForm: FormGroup;
   factors: String[];
   limits = new FormArray([]);
-  transactionType: String = 'Pago de servicios públicos';
 
   @Input('data') data;
 

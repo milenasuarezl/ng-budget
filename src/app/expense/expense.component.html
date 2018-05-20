@@ -1,33 +1,23 @@
 <div class="rank-type-transactions-content">
-  <div class="transaction-type-title">
-    {{ transactionType }}
-  </div>
   <form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">
     <div formArrayName="limits">
       <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('limits').controls; let i = index" [formGroupName]="i">
-        <label for="">Rango {{i}}</label>
+        <label for="">Rango {{data.idRank}}</label>
         <div>
           <input type="text" placeholder="Minímo" formControlName="valueMinimo"> </div>
         <div>
           <input type="text" placeholder="Máximo" formControlName="valueMaximo"> </div>
 
         <div>
-          <input [attr.list]="'factor' + range.idRank">
+          <input [attr.list]="'factor' + data.idRank">
         </div>
-        <datalist [attr.id]="'factor' + range.idRank">
-          <option *ngFor="let factor of range.factors" [value]="factor.name">
+        <datalist [attr.id]="'factor' + data.idRank">
+          <option *ngFor="let factor of data.factors" [value]="factor.name">
         </datalist>
 
         <div>
           <label for="select">Factor</label>
           <select id="select" formControlName="factor1">
-            <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
-            </option>
-          </select>
-        </div>
-        <div>
-          <label for="select">Factor 2</label>
-          <select id="select" formControlName="factor2">
             <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
             </option>
           </select>
