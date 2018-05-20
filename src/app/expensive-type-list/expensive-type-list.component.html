@@ -1,1 +1,6 @@
-<app-expense></app-expense>
+<div class="content-wrapper">
+    <div class="card" *ngFor="let transferType of expensives">
+        <h4> {{transferType.transactionId}} - {{transferType.transactionName}}</h4>
+        <app-expense class="row" [data]="range" *ngFor="let range of transferType.ranges"></app-expense>
+    </div>
+</div>

@@ -1,40 +1,48 @@
 <div class="rank-type-transactions-content">
-    <div class="transaction-type-title">
-      {{ transactionType }}
+  <div class="transaction-type-title">
+    {{ transactionType }}
+  </div>
+  <form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">
+    <div formArrayName="limits">
+      <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('limits').controls; let i = index" [formGroupName]="i">
+        <label for="">Rango {{i}}</label>
+        <div>
+          <input type="text" placeholder="Minímo" formControlName="valueMinimo"> </div>
+        <div>
+          <input type="text" placeholder="Máximo" formControlName="valueMaximo"> </div>
+
+        <div>
+          <input [attr.list]="'factor' + range.idRank">
+        </div>
+        <datalist [attr.id]="'factor' + range.idRank">
+          <option *ngFor="let factor of range.factors" [value]="factor.name">
+        </datalist>
+
+        <div>
+          <label for="select">Factor</label>
+          <select id="select" formControlName="factor1">
+            <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
+            </option>
+          </select>
+        </div>
+        <div>
+          <label for="select">Factor 2</label>
+          <select id="select" formControlName="factor2">
+            <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
+            </option>
+          </select>
+        </div>
+        <div>
+          <button type="button" (click)="onDeleteRankTransactionType(i)">X</button>
+        </div>
+      </div>
     </div>
-<form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">
-  <div formArrayName="limits">
-    <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('limits').controls; let i = index" [formGroupName]="i">
-      <label for="">Rango {{i}}</label>
-      <div>
-        <input type="text" placeholder="Minímo" formControlName="valueMinimo"> </div>
-      <div>
-        <input type="text" placeholder="Máximo" formControlName="valueMaximo"> </div>
-      <div>
-        <label for="select">Factor</label>
-        <select id="select" formControlName="factor1">
-          <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
-          </option>
-        </select>
-      </div>
-      <div>
-        <label for="select">Factor 2</label>
-        <select id="select" formControlName="factor2">
-          <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
-          </option>
-        </select>
-      </div>
-      <div>
-        <button type="button" (click)="onDeleteRankTransactionType(i)">X</button>
-      </div>
+    <div>
+      <button type="button" (click)="onAddRankTransactionType()">Add Rank</button>
     </div>
-  </div>
-  <div>
-    <button type="button" (click)="onAddRankTransactionType()">Add Rank</button>
-  </div>
-  <div class="actions">
-    <button type="reset">Cancel</button>
-    <button type="submit">Submit</button>
-  </div>
-</form>
+    <div class="actions">
+      <button type="reset">Cancel</button>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
 </div>

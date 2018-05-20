@@ -38,7 +38,7 @@ export class ExpensiveTypeRepository {
         this.transactionsTypes = transactionTypes;
     }
 
-    getTransactionsType(): ExpensivesTypeModel[] {
+    getExpensivesType(): ExpensivesTypeModel[] {
         return this.transactionsTypes;
     }
 }

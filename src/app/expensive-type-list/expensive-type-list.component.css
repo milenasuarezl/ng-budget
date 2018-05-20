@@ -1,0 +1,14 @@
+.content-wrapper {
+    margin-top: 80px;
+}
+
+.card {
+    margin: 0 auto;
+    width: 90%;
+    border: 1px solid #aaa;
+    padding: 0 2em 2em;
+}
+
+.row {
+    display: inline-block;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,8 @@ export class ExpenseComponent implements OnInit {
   factors: String[];
   limits = new FormArray([]);
   transactionType: String = 'Pago de servicios públicos';
+
+  @Input('data') data;
 
   constructor(private formBuilder: FormBuilder) { }
 
