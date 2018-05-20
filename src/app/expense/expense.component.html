@@ -1,4 +1,4 @@
-<div class="rank-type-transactions-content">
+<div class="range-container">
   <form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">
     <div formArrayName="limits">
       <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('limits').controls; let i = index" [formGroupName]="i">
@@ -15,24 +15,21 @@
           <option *ngFor="let factor of data.factors" [value]="factor.name">
         </datalist>
 
-        <div>
+       <!--  <div>
           <label for="select">Factor</label>
           <select id="select" formControlName="factor1">
             <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
             </option>
           </select>
-        </div>
+        </div> -->
+       
         <div>
-          <button type="button" (click)="onDeleteRankTransactionType(i)">X</button>
+          <button class="range-delete-button" type="button" (click)="onDeleteRankTransactionType(i)">X</button>
         </div>
       </div>
     </div>
-    <div>
-      <button type="button" (click)="onAddRankTransactionType()">Add Rank</button>
-    </div>
-    <div class="actions">
-      <button type="reset">Cancel</button>
-      <button type="submit">Submit</button>
-    </div>
+    <!-- <div class="range-new">
+      <button class="range-new-button" type="button" (click)="onAddRankTransactionType()">Nuevo rango</button>
+    </div> -->
   </form>
 </div>

@@ -1,4 +1,18 @@
+.range-container {
+  margin: 1em;
+}
+
 .transaction-type-wrapper {
     display: flex;
     align-items: center;
-  }
+}
+
+.range-delete-button {
+    background-color: rgb(229, 55, 46);
+    border-radius: 5px;
+    color: white;
+    text-align: center; 
+    text-decoration: none;
+    padding: .5em;
+    width: 25px;
+}
