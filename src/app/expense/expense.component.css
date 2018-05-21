@@ -2,6 +2,10 @@
   margin: 1em;
 }
 
+.range-row {
+    display: inline-block;
+}
+
 .transaction-type-wrapper {
     display: flex;
     align-items: center;

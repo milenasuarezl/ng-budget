@@ -28,17 +28,27 @@ export class ExpenseComponent implements OnInit {
     (<FormArray>this.transactionTypeForm.get('ranges')).removeAt(idRank);
   }
 
-  createItem(): FormGroup {
+  private createItem(): FormGroup {
     return this.formBuilder.group({
-      valueMinimo: ['', Validators.required],
-      valueMaximo: ['', Validators.required],
-      factor1: [this.factors[0], Validators.required]
+      amountFloor: ['', Validators.required],
+      amountCeil: ['', Validators.required]
     });
+  }
+
+  private getRanges(ranges: any): FormGroup[] {
+    const rangesFormGroup: FormGroup[] = [];
+    ranges.forEach(data => {
+      rangesFormGroup.push(this.formBuilder.group({
+        amountFloor: [data.amountFloor, Validators.required],
+        amountCeil: [data.amountCeil, Validators.required]
+      }));
+    });
+    return rangesFormGroup;
   }
 
   private initForm() {
     this.transactionTypeForm = this.formBuilder.group({
-      ranges: this.formBuilder.array([this.createItem()])
+      ranges: this.formBuilder.array(this.getRanges(this.data))
     });
   }
 

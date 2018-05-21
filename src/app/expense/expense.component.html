@@ -1,34 +1,35 @@
 <div class="range-container">
   <form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">
-    <div formArrayName="ranges" *ngFor="let range of data">
+    <div class="range-row" formArrayName="ranges">
 
       <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('ranges').controls; let i = index" [formGroupName]="i">
-        <label for="">Rango {{range.idRank}}</label>
+        <label for="">Rango {{limit.idRank}}</label>
         <div>
-          <input type="text" placeholder="Minímo" formControlName="valueMinimo"> </div>
+          <input type="text" placeholder="Minímo" formControlName="amountFloor"> </div>
         <div>
-          <input type="text" placeholder="Máximo" formControlName="valueMaximo"> </div>
+          <input type="text" placeholder="Máximo" formControlName="amountCeil"> </div>
 
-        <div>
+
+        <!--   <div>
           <input [attr.list]="'factor' + range.idRank">
         </div>
         <datalist [attr.id]="'factor' + range.idRank">
           <option *ngFor="let factor of range.factors" [value]="factor.name">
-        </datalist>
+        </datalist> -->
 
         <div>
-          <button class="range-delete-button" type="button" (click)="onDeleteRankTransactionType(i)">X</button>
+          <button class="range-delete-button" type="button" (click)="onDeleteRankTransactionType()">X</button>
         </div>
       </div>
-      
+
     </div>
 
     <div class="range-new">
       <button class="range-new-button" type="button" (click)="onAddRankTransactionType()">Nuevo rango</button>
     </div>
     <div class="range-actions">
-        <button class="range-actions-button" type="reset">Cancelar</button>
-        <button class="range-actions-button" type="submit">Enviar</button>
+      <button class="range-actions-button" type="reset">Cancelar</button>
+      <button class="range-actions-button" type="submit">Enviar</button>
     </div>
   </form>
 </div>
