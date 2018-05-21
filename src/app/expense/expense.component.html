@@ -1,35 +1,34 @@
 <div class="range-container">
   <form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">
-    <div formArrayName="limits">
-      <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('limits').controls; let i = index" [formGroupName]="i">
-        <label for="">Rango {{data.idRank}}</label>
+    <div formArrayName="ranges" *ngFor="let range of data">
+
+      <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('ranges').controls; let i = index" [formGroupName]="i">
+        <label for="">Rango {{range.idRank}}</label>
         <div>
           <input type="text" placeholder="Minímo" formControlName="valueMinimo"> </div>
         <div>
           <input type="text" placeholder="Máximo" formControlName="valueMaximo"> </div>
 
         <div>
-          <input [attr.list]="'factor' + data.idRank">
+          <input [attr.list]="'factor' + range.idRank">
         </div>
-        <datalist [attr.id]="'factor' + data.idRank">
-          <option *ngFor="let factor of data.factors" [value]="factor.name">
+        <datalist [attr.id]="'factor' + range.idRank">
+          <option *ngFor="let factor of range.factors" [value]="factor.name">
         </datalist>
 
-       <!--  <div>
-          <label for="select">Factor</label>
-          <select id="select" formControlName="factor1">
-            <option *ngFor="let factor of factors" [value]="factor"> {{factor}}
-            </option>
-          </select>
-        </div> -->
-       
         <div>
           <button class="range-delete-button" type="button" (click)="onDeleteRankTransactionType(i)">X</button>
         </div>
       </div>
+      
     </div>
-    <!-- <div class="range-new">
+
+    <div class="range-new">
       <button class="range-new-button" type="button" (click)="onAddRankTransactionType()">Nuevo rango</button>
-    </div> -->
+    </div>
+    <div class="range-actions">
+        <button class="range-actions-button" type="reset">Cancelar</button>
+        <button class="range-actions-button" type="submit">Enviar</button>
+    </div>
   </form>
 </div>

@@ -1,13 +1,6 @@
 <div class="content-wrapper">
     <div class="card" *ngFor="let transferType of expensives">
         <h4>{{transferType.transactionName}}</h4>
-        <app-expense class="row" [data]="range" *ngFor="let range of transferType.ranges"></app-expense>
-        <div class="range-new">
-            <button class="range-new-button" type="button" (click)="onAddRankTransactionType()">Nuevo rango</button>
-        </div>
-        <div class="range-actions">
-            <button class="range-actions-button" type="reset">Cancelar</button>
-            <button class="range-actions-button" type="submit">Enviar</button>
-        </div>
+        <app-expense class="row" [data]="transferType.ranges"></app-expense>
     </div>
 </div>

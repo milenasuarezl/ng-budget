@@ -1,4 +1,4 @@
-export class TransfersMock {
+export class TransactionsMock {
     static transfers: any[] = [
         {
             idRank: 1,

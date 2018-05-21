@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ExpensiveTypeModel } from './expensive-type.model';
 import { ExpensivesTypeModel } from './expensives-type.model';
-import { TransfersMock } from '../mocks/transactions.mock';
+import { TransactionsMock } from '../mocks/transactions.mock';
 
 
 @Injectable()
@@ -10,7 +10,7 @@ export class ExpensiveTypeRepository {
 
     constructor() {
 
-        const rangesTransactionType = TransfersMock.transfers.reduce((transferTypeAcc, transferType): {} => {
+        const rangesTransactionType = TransactionsMock.transfers.reduce((transferTypeAcc, transferType): {} => {
             if (!transferTypeAcc[transferType.transactionId]) {
                 transferTypeAcc[transferType.transactionId] = [transferType];
             } else {
@@ -19,7 +19,7 @@ export class ExpensiveTypeRepository {
             return transferTypeAcc;
         }, {});
 
-        const transactionTypes = TransfersMock.transfers.reduce((transferTypeAcc, transferType): ExpensivesTypeModel => {
+        const transactionTypes = TransactionsMock.transfers.reduce((transferTypeAcc, transferType): ExpensivesTypeModel => {
             const transfer: ExpensivesTypeModel = {
                 transactionId: transferType.transactionId,
                 transactionName: transferType.transactionName,

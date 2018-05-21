@@ -16,3 +16,32 @@
     padding: .5em;
     width: 25px;
 }
+
+.range-new {
+    padding: 1em 0 .5em;
+}
+  
+.range-new-button {
+    background-color: rgb(6, 113, 92);
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 1em;
+    width: 100px;
+}
+
+.range-actions {
+    text-align: right;
+}
+
+.range-actions-button {
+    background-color: rgb(5, 114, 224);
+    border-radius: 15px;
+    border: none;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    margin: .5em;
+    width: 100px;
+}

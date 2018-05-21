@@ -9,7 +9,7 @@ import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@ang
 export class ExpenseComponent implements OnInit {
   transactionTypeForm: FormGroup;
   factors: String[];
-  limits = new FormArray([]);
+  ranges = new FormArray([]);
 
   @Input('data') data;
 
@@ -21,25 +21,24 @@ export class ExpenseComponent implements OnInit {
   }
 
   onAddRankTransactionType(): void {
-    (<FormArray>this.transactionTypeForm.get('limits')).push(this.createItem());
+    (<FormArray>this.transactionTypeForm.get('ranges')).push(this.createItem());
   }
 
   onDeleteRankTransactionType(idRank: number): void {
-    (<FormArray>this.transactionTypeForm.get('limits')).removeAt(idRank);
+    (<FormArray>this.transactionTypeForm.get('ranges')).removeAt(idRank);
   }
 
   createItem(): FormGroup {
     return this.formBuilder.group({
       valueMinimo: ['', Validators.required],
       valueMaximo: ['', Validators.required],
-      factor1: [this.factors[0], Validators.required],
-      factor2: [this.factors[0], Validators.required]
+      factor1: [this.factors[0], Validators.required]
     });
   }
 
   private initForm() {
     this.transactionTypeForm = this.formBuilder.group({
-      limits: this.formBuilder.array([this.createItem()])
+      ranges: this.formBuilder.array([this.createItem()])
     });
   }
 
