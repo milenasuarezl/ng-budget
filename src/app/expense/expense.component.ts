@@ -52,6 +52,8 @@ export class ExpenseComponent implements OnInit {
     });
   }
 
-  onFormSubmit(): void { }
+  onFormSubmit(): void { 
+    console.log(this.transactionTypeForm.get('ranges').value);
+  }
 }
 

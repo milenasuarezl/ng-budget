@@ -2,20 +2,19 @@
   <form [formGroup]="transactionTypeForm" (ngSubmit)="onFormSubmit()">
     <div class="range-row" formArrayName="ranges">
 
-      <div class="transaction-type-wrapper" *ngFor="let limit of transactionTypeForm.get('ranges').controls; let i = index" [formGroupName]="i">
-        <label for="">Rango {{limit.idRank}}</label>
+      <div class="transaction-type-wrapper" *ngFor="let range of transactionTypeForm.get('ranges').controls; let i = index" [formGroupName]="i">
+        <label for="">Rango {{range.idRank}}</label>
         <div>
           <input type="text" placeholder="Minímo" formControlName="amountFloor"> </div>
         <div>
           <input type="text" placeholder="Máximo" formControlName="amountCeil"> </div>
 
-
-        <!--   <div>
+        <div>
           <input [attr.list]="'factor' + range.idRank">
         </div>
         <datalist [attr.id]="'factor' + range.idRank">
           <option *ngFor="let factor of range.factors" [value]="factor.name">
-        </datalist> -->
+        </datalist>
 
         <div>
           <button class="range-delete-button" type="button" (click)="onDeleteRankTransactionType()">X</button>
@@ -29,7 +28,7 @@
     </div>
     <div class="range-actions">
       <button class="range-actions-button" type="reset">Cancelar</button>
-      <button class="range-actions-button" type="submit">Enviar</button>
+      <button class="range-actions-button" type="submit" [disabled]="!transactionTypeForm.valid">Enviar</button>
     </div>
   </form>
 </div>
