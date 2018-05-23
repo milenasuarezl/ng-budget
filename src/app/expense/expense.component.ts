@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { ExpensiveTypeModel } from '../model/expensive-type.model';
 
 @Component({
   selector: 'app-expense',
@@ -52,8 +53,35 @@ export class ExpenseComponent implements OnInit {
     });
   }
 
-  onFormSubmit(): void { 
-    console.log(this.transactionTypeForm.get('ranges').value);
+  onFormSubmit(): void {
+    let ranges = this.transactionTypeForm.get('ranges').value;
+    const isValidRange = this.isValidateRanges(ranges);
+    console.log('LOL  ', isValidRange);
+  }
+
+  isValidateRanges(ranges: any): boolean {
+    let isValidated = false;
+    this.sortRanges(ranges);
+    ranges.reduce((acum: ExpensiveTypeModel, x: ExpensiveTypeModel) => {
+      if (x.amountFloor <= x.amountCeil) {
+        if (!acum.amountFloor) {
+          acum = x;
+        } else {
+          if ((+acum.amountCeil + 1) === +x.amountFloor) {
+            acum = x;
+            isValidated = true;
+          }
+        }
+      }
+      return acum;
+    }, []);
+    return isValidated;
+  }
+
+  private sortRanges(ranges: any): any {
+    ranges.sort((initialRange, nextRange) => {
+      return initialRange.amountFloor - nextRange.amountFloor;
+    });
   }
 }
 
